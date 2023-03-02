@@ -1,0 +1,7 @@
+{
+  "name": "integradoraII",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
