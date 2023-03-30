@@ -23,13 +23,9 @@ export class LoginPage implements OnInit {
   ngOnInit(): void {
   }
 
-  obtenerValor() {
-    const email = (<HTMLInputElement>document.getElementById("email")).value;
-    const password = (<HTMLInputElement>document.getElementById("password")).value;
-    return [email, password];
-  }
   onSubmit(){
-    const [Email, password] =  this.obtenerValor();
+    const Email = (<HTMLInputElement>document.getElementById("email")).value;
+    const password = (<HTMLInputElement>document.getElementById("password")).value;
     const expresionRegular = /\S+@\S+\.\S+/;
     if (expresionRegular.test(Email)) {
       console.log(`${Email} es un correo electrónico válido.`);
