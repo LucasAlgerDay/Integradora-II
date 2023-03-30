@@ -21,14 +21,10 @@ export class RegistroPage implements OnInit {
   ngOnInit(): void {
   }
 
-  obtenerValor() {
-    const username = (<HTMLInputElement>document.getElementById("username")).value;
-    const email = (<HTMLInputElement>document.getElementById("email")).value;
-    const password = (<HTMLInputElement>document.getElementById("password")).value;
-    return [username, email, password];
-  }
   onSubmit(){
-    const [username, Email, password] =  this.obtenerValor();
+    const username = (<HTMLInputElement>document.getElementById("username")).value;
+    const Email = (<HTMLInputElement>document.getElementById("email")).value;
+    const password = (<HTMLInputElement>document.getElementById("password")).value;
     const expresionRegular = /\S+@\S+\.\S+/;
     if (expresionRegular.test(Email)) {
       console.log(`${Email} es un correo electrónico válido.`);
@@ -40,6 +36,13 @@ export class RegistroPage implements OnInit {
     }
     if (password.length >= 6) {
       console.log(`La contraseña "${password}" es válida.`);
+    } else {
+      console.log(`La contraseña "${password}" debe tener al menos 6 caracteres.`);
+      this.password_invalido()
+      return
+    }
+    if (password.length >= 2) {
+      console.log(`El nombre "${password}" es válida.`);
     } else {
       console.log(`La contraseña "${password}" debe tener al menos 6 caracteres.`);
       this.password_invalido()
