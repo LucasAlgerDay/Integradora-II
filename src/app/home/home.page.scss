@@ -1,0 +1,31 @@
+.icon-container {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+}
+ion-card {
+    background-color: #fff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+    border-radius: 10px; /* Agrega bordes redondeados */
+}
+  
+ion-card-content {
+    color: #1c2237;
+}
+  
+ion-card-title {
+    color: #2196f3;
+}
+  
+ion-card-subtitle {
+    color: #2196f3;
+}
+  
+ion-slides {
+    height: 250px;
+}
+  
+ion-slide img {
+    height: 100%;
+    width: 100%;
+}

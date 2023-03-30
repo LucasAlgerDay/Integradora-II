@@ -1,0 +1,44 @@
+
+/* Estilo para la etiqueta del selector de hora */
+label {
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: #000000;
+  margin-bottom: 0.5rem;
+}
+
+/* Estilo para el selector de hora */
+input[type="time"] {
+  padding: 0.5rem;
+  border: 1px solid #008000;
+  border-radius: 4px;
+  font-size: 1.2rem;
+  color: #ff0000;
+}
+
+/* Estilo para el texto dentro del selector de hora */
+input[type="time"]::-webkit-datetime-edit-fields-wrapper {
+  color: #ffffff;
+}
+
+/* Estilo para la flecha del selector de hora */
+input[type="time"]::-webkit-datetime-edit-ampm-field:not([aria-valuenow=""])::after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 50%;
+  right: 1rem;
+  margin-top: -0.5rem;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0.5rem 0.5rem 0 0.5rem;
+  border-color: #333 transparent transparent transparent;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 50vh; /* Establece la altura del contenedor al 100% del alto de la pantalla */
+}
