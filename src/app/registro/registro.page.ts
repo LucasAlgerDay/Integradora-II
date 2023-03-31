@@ -71,7 +71,7 @@ export class RegistroPage implements OnInit {
       this.nombre_perro_invalido()
       return
     }
-    if (password.length >= 2) {
+    if (nombre.length >= 2) {
       console.log(`El nombre "${nombre}" es válida.`);
     } else {
       console.log(`El nombre del perro "${nombre}" debe tener al menos 6 caracteres.`);
