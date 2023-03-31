@@ -43,20 +43,6 @@ export class RegistroPage implements OnInit {
       this.password_invalido()
       return
     }
-    if (password.length >= 2) {
-      console.log(`La contraseña "${password}" es válida.`);
-    } else {
-      console.log(`La contraseña "${password}" debe tener al menos 6 caracteres.`);
-      this.password_invalido()
-      return
-    }
-     if (raza.length >= 6) {
-      console.log(`La raza "${raza}" es válida.`);
-    } else {
-      console.log(`La raza "${raza}" debe tener al menos 6 caracteres.`);
-      this.raza_invalido()
-      return
-    }
     if (raza.length >= 2) {
       console.log(`La raza de perro "${raza}" es válida.`);
     } else {
@@ -71,20 +57,12 @@ export class RegistroPage implements OnInit {
       this.nombre_perro_invalido()
       return
     }
-    if (nombre.length >= 2) {
-      console.log(`El nombre "${nombre}" es válida.`);
-    } else {
-      console.log(`El nombre del perro "${nombre}" debe tener al menos 6 caracteres.`);
-      this.nombre_perro_invalido()
-      return
-    }
-    
     const data: usersRegister = {
       username: username,
       email: Email,
       password: password,
       raza: raza,
-      nombre: nombre,
+      nombre_perro: nombre,
       status: ''
     };
     this.regiser.registeruser(data).subscribe(resultado => {
@@ -132,5 +110,20 @@ export class RegistroPage implements OnInit {
     });
     anuncio.present()
   }
-  
+  async raza_invalido(){
+    const anuncio = await this.controlador.create({
+      message: "¡La raza no debe quedar en blanco!",
+      duration: 5000,
+      position: "middle"
+    });
+    anuncio.present()
+  }
+  async nombre_perro_invalido(){
+    const anuncio = await this.controlador.create({
+      message: "¡El nombre no debe quedar en blanco!",
+      duration: 5000,
+      position: "middle"
+    });
+    anuncio.present()
+  }
 }
