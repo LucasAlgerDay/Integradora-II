@@ -38,14 +38,16 @@ require("./userDetails");
 const User = mongo.model("userInfo");
 
 app.post("/register", async (req, res) => {
-    const { username, email, password, raza} = req.body;
+    const { username, email, password, raza, nombreperro} = req.body;
     try {
         await User.create(
     {      
         username: username,
         email: email,
         password: password,
-        raza: raza
+        raza: raza,
+        nombreperro: nombreperro,
+      ,
     });
     res.send({status: "ok"});
     } catch (error) {
