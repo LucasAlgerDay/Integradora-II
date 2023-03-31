@@ -3,4 +3,6 @@ export interface usersRegister{
     username: string,
     email: String,
     password: String,
+    raza: String,
+    nombre_perro: String,
 }
