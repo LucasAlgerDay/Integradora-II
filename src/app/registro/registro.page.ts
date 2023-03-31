@@ -25,6 +25,8 @@ export class RegistroPage implements OnInit {
     const username = (<HTMLInputElement>document.getElementById("username")).value;
     const Email = (<HTMLInputElement>document.getElementById("email")).value;
     const password = (<HTMLInputElement>document.getElementById("password")).value;
+     const raza = (<HTMLInputElement>document.getElementById("raza")).value;
+     const nombre = (<HTMLInputElement>document.getElementById("nombre_perro")).value;
     const expresionRegular = /\S+@\S+\.\S+/;
     if (expresionRegular.test(Email)) {
       console.log(`${Email} es un correo electrónico válido.`);
@@ -42,16 +44,47 @@ export class RegistroPage implements OnInit {
       return
     }
     if (password.length >= 2) {
-      console.log(`El nombre "${password}" es válida.`);
+      console.log(`La contraseña "${password}" es válida.`);
     } else {
       console.log(`La contraseña "${password}" debe tener al menos 6 caracteres.`);
       this.password_invalido()
       return
     }
+     if (raza.length >= 6) {
+      console.log(`La raza "${raza}" es válida.`);
+    } else {
+      console.log(`La raza "${raza}" debe tener al menos 6 caracteres.`);
+      this.raza_invalido()
+      return
+    }
+    if (raza.length >= 2) {
+      console.log(`La raza de perro "${raza}" es válida.`);
+    } else {
+      console.log(`La raza de perro "${raza}" debe tener al menos 6 caracteres.`);
+      this.raza_invalido()
+      return
+    }
+     if (nombre.length >= 6) {
+      console.log(`El nombre del perro "${nombre}" es válida.`);
+    } else {
+      console.log(`El nombre del perro "${nombre}" debe tener al menos 6 caracteres.`);
+      this.nombre_perro_invalido()
+      return
+    }
+    if (password.length >= 2) {
+      console.log(`El nombre "${nombre}" es válida.`);
+    } else {
+      console.log(`El nombre del perro "${nombre}" debe tener al menos 6 caracteres.`);
+      this.nombre_perro_invalido()
+      return
+    }
+    
     const data: usersRegister = {
       username: username,
       email: Email,
       password: password,
+      raza: raza,
+      nombre: nombre,
       status: ''
     };
     this.regiser.registeruser(data).subscribe(resultado => {
