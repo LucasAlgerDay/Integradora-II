@@ -38,18 +38,23 @@ require("./userDetails");
 const User = mongo.model("userInfo");
 
 app.post("/register", async (req, res) => {
-    const { username, email, password, raza, nombreperro} = req.body;
+    const { username, email, password, raza, nombre_perro} = req.body;
     try {
+      const user = await User.findOne({ email: email });
+      if (user) {
+        res.send({status: "registred"});
+      }
+      else{
         await User.create(
-    {      
-        username: username,
-        email: email,
-        password: password,
-        raza: raza,
-        nombreperro: nombreperro,
-      ,
-    });
-    res.send({status: "ok"});
+          {      
+              username: username,
+              email: email,
+              password: password,
+              raza: raza,
+              nombreperro: nombre_perro,
+          });
+          res.send({status: "ok"});
+      }
     } catch (error) {
         res.send({status: "error en registro"})
     }

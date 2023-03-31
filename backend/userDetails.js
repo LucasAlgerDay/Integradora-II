@@ -6,7 +6,7 @@ const userDetailsSchema = new mongo.Schema(
     email: String,
     password: String,
     raza: String,
-    nombreperro: string,
+    nombreperro: String,
     },
     {
         collection: "userInfo",
