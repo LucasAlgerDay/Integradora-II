@@ -26,6 +26,10 @@ const routes: Routes = [
   {
     path: 'home',
     loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
+  },
+  {
+    path: 'registro-m',
+    loadChildren: () => import('./registro-m/registro-m.module').then( m => m.RegistroMPageModule)
   }
 ];
 
