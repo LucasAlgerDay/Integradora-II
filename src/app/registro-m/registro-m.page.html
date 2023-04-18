@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Registro Mascota</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12">
+        <img src="assets/Bienvenido.png" class="img-login"/>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="11">
+        <ion-item>
+          <ion-label position="floating" >Nombre de la mascota</ion-label>
+          <ion-input type="text" id="nombre"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="11">
+        <ion-item>
+          <ion-label position="floating">Raza</ion-label>
+          <ion-input type="email" id="Raza"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="11">
+        <ion-item>
+          <ion-label position="floating">Peso</ion-label>
+          <ion-input type="text" id="Peso"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="12" class="ion-text-center">
+        <ion-button color="success" expand="block" class="btn-register">Registrate</ion-button>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="12" class="ion-text-center">
+        <p>Cancelar aqui <a class="ion-text-center mi-color" routerLink="/home">Cancelar</a></p>
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
+</ion-content>
