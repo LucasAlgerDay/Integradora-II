@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ToastController } from '@ionic/angular';
+import { NavController, ToastController } from '@ionic/angular';
 import { usersLogin } from '../models/users/users.models';
 import { usersRegister } from '../models/users/usersregister.models';
 import { Dataservice } from '../services/autenticacion.service';
@@ -14,6 +14,7 @@ import { Dataregister } from '../services/registro.service';
 export class RegistroPage implements OnInit {
 
   constructor(
+    private navCtrl: NavController,
     private regiser: Dataregister,
     public controlador: ToastController
   ) { }
@@ -25,8 +26,6 @@ export class RegistroPage implements OnInit {
     const username = (<HTMLInputElement>document.getElementById("username")).value;
     const Email = (<HTMLInputElement>document.getElementById("email")).value;
     const password = (<HTMLInputElement>document.getElementById("password")).value;
-     const raza = (<HTMLInputElement>document.getElementById("raza")).value;
-     const nombre = (<HTMLInputElement>document.getElementById("nombre_perro")).value;
     const expresionRegular = /\S+@\S+\.\S+/;
     if (expresionRegular.test(Email)) {
       console.log(`${Email} es un correo electrónico válido.`);
@@ -43,32 +42,20 @@ export class RegistroPage implements OnInit {
       this.password_invalido()
       return
     }
-    if (raza.length >= 2) {
-      console.log(`La raza de perro "${raza}" es válida.`);
-    } else {
-      console.log(`La raza de perro "${raza}" debe tener al menos 6 caracteres.`);
-      this.raza_invalido()
-      return
-    }
-     if (nombre.length >= 6) {
-      console.log(`El nombre del perro "${nombre}" es válida.`);
-    } else {
-      console.log(`El nombre del perro "${nombre}" debe tener al menos 6 caracteres.`);
-      this.nombre_perro_invalido()
-      return
-    }
     const data: usersRegister = {
       username: username,
       email: Email,
       password: password,
-      raza: raza,
-      nombre_perro: nombre,
       status: ''
     };
     this.regiser.registeruser(data).subscribe(resultado => {
       console.log(resultado.status); 
       if (resultado.status === 'ok') {
+        this.navCtrl.navigateForward('/login');
         return this.registro_exitoso();
+      }
+      if (resultado.status === 'registred') {
+        return this.registrado_user();
       }
       else{
         return this.registro_fallido();
@@ -84,7 +71,14 @@ export class RegistroPage implements OnInit {
     });
     anuncio.present()
   }
-
+  async registrado_user(){
+    const anuncio = await this.controlador.create({
+      message: "¡Correo registrado, intenta con otro!",
+      duration: 5000,
+      position: "middle"
+    });
+    anuncio.present()
+  }
   async registro_fallido(){
     const anuncio = await this.controlador.create({
       message: "¡Acaba de ocurrir un error a la hora de registrarse, intenta mas tarde!",

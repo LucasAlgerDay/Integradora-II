@@ -29,7 +29,6 @@ export class LoginPage implements OnInit {
     const expresionRegular = /\S+@\S+\.\S+/;
     if (expresionRegular.test(Email)) {
       console.log(`${Email} es un correo electrónico válido.`);
-      this.navCtrl.navigateForward('/home');
     } 
     else {
       console.log(`${Email} no es un correo electrónico válido.`);
@@ -46,11 +45,14 @@ export class LoginPage implements OnInit {
     const data: usersLogin = {
       email: Email,
       password: password,
-      status: ''
+      status: '',
+      userId: '',
     };
     this.checker.loginuser(data).subscribe(resultado => {
       console.log(resultado.status); 
       if (resultado.status === 'ok') {
+        this.grabar_storage(Email, resultado.userId);
+        this.navCtrl.navigateForward('/home');
         return this.login_exitoso();
       }
       if (resultado.status === 'incorrect password') {
@@ -116,6 +118,12 @@ export class LoginPage implements OnInit {
       position: "middle"
     });
     anuncio.present()
+  }
+
+  grabar_storage(Email: string, userId: string){
+    localStorage.setItem('isLoggedIn', 'true');
+    localStorage.setItem('email', Email);
+    localStorage.setItem('userId', userId);
   }
 }
 

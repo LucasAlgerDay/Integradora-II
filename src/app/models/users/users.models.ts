@@ -1,6 +1,6 @@
 export interface usersLogin{
-    username: string,
     status: string,
+    userId: string,
     email: String,
     password: String,
 }

@@ -1,0 +1,13 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Horas guardadas</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let p of horas">
+      <ion-label>{{p.hour}}</ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

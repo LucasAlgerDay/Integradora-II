@@ -30,6 +30,14 @@ const routes: Routes = [
   {
     path: 'registro-m',
     loadChildren: () => import('./registro-m/registro-m.module').then( m => m.RegistroMPageModule)
+  },
+  {
+    path: 'pets-saved',
+    loadChildren: () => import('./pets-saved/pets-saved.module').then( m => m.PetsSavedPageModule)
+  },
+  {
+    path: 'hours-saved',
+    loadChildren: () => import('./hours-saved/hours-saved.module').then( m => m.HoursSavedPageModule)
   }
 ];
 
