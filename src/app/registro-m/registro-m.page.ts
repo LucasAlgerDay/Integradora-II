@@ -17,6 +17,11 @@ export class RegistroMPage implements OnInit {
   ) { }
 
   ngOnInit() {
+    const isLoggedIn = localStorage.getItem('isLoggedIn');
+    if (isLoggedIn == "false") {
+      this.inicia_sesion();
+      this.navCtrl.navigateForward('/login');
+    }
   }
   registrar_mascota() {
     const isLoggedIn = localStorage.getItem('isLoggedIn');
