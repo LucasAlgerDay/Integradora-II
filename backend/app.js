@@ -54,7 +54,7 @@ app.post("/login", async (req, res) => {
       const user = await User.findOne({ email: email });
       if (user) {
         if (user.password === password) {
-          res.send({ status: "ok" });
+          res.send({ status: "ok", userId: user.userId });
         } else {
           res.send({ status: "incorrect password" });
         }
@@ -67,27 +67,27 @@ app.post("/login", async (req, res) => {
   });
 
 app.post("/time", async (req, res) => {
-  const { userId, hour, minute } = req.body;
-
+  const { userId, hora } = req.body;
+  console.log(req.body);
   try {
     const newTime = new Time({
       userId: userId,
-      hour: hour,
-      minute: minute,
+      hour: hora,
     });
     await newTime.save();
     res.send({ status: "ok" });
   } catch (error) {
+    console.log(error);
     res.send({ status: "Error" });
   }
 });
 
 app.post("/pets", async (req, res) => {
-  const { userId, nombre, raza, peso } = req.body;
+  const { userId, name, raza, peso } = req.body;
   try {
     const newTime = new pets({
       userId: userId,
-      name: nombre,
+      name: name,
       race: raza,
       weight: peso
     });
@@ -96,4 +96,22 @@ app.post("/pets", async (req, res) => {
   } catch (error) {
     res.send({ status: "Error" });
   }
+});
+
+app.post("/pets_saved", async (req, res) => {
+  const { userId } = req.body;
+  const user = await pets.find({ userId: userId });
+  if (user){
+    res.send(user);
+  }
+  console.log(user);
+});
+
+app.post("/hours_saved", async (req, res) => {
+  const { userId } = req.body;
+  const user = await Time.find({ userId: userId });
+  if (user){
+    res.send(user);
+  }
+  console.log(user);
 });
